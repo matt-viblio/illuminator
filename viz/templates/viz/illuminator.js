@@ -26,43 +26,47 @@ var interaction_sn = {};
 
 var completed = 0;
 
-var home = 'script_data/';
+var home = '/script_data/{{ script_id }}/';
 
-d3.json( home + 'script/', function ( e, d ) {
-    script = d;
-    completed++;
-    if ( completed == 5 ) {
+function load_all_data() {
+    d3.json( home + 'script/', function ( e, d ) {
+	script = d;
+	completed++;
+	if ( completed == 5 ) {
 	illuminate();
-    }
-} );
-d3.json( home + 'scenes/', function ( e, d ) {
-    scenes = d;
-    completed++;
-    if ( completed == 5 ) {
-	illuminate();
-    }
-} );
-d3.json( home + 'noun_types/', function ( e, d ) {
-    noun_types = d;
-    completed++;
-    if ( completed == 5 ) {
-	illuminate();
-    }
-} );
-d3.json( home + 'presence_sn/', function ( e, d ) {
-    presence_sn = d;
-    completed++;
-    if ( completed == 5 ) {
-	illuminate();
-    }
-} );
-d3.json( home + 'interaction_sn/', function ( e, d ) {
-    interaction_sn = d;
-    completed++;
-    if ( completed == 5 ) {
-	illuminate();
-    }
-} );
+	}
+    } );
+    d3.json( home + 'scenes/', function ( e, d ) {
+	scenes = d;
+	completed++;
+	if ( completed == 5 ) {
+	    illuminate();
+	}
+    } );
+    d3.json( home + 'noun_types/', function ( e, d ) {
+	noun_types = d;
+	completed++;
+	if ( completed == 5 ) {
+	    illuminate();
+	}
+    } );
+    d3.json( home + 'presence_sn/', function ( e, d ) {
+	presence_sn = d;
+	completed++;
+	if ( completed == 5 ) {
+	    illuminate();
+	}
+    } );
+    d3.json( home + 'interaction_sn/', function ( e, d ) {
+	interaction_sn = d;
+	completed++;
+	if ( completed == 5 ) {
+	    illuminate();
+	}
+    } );
+}
+
+load_all_data();
 
 function illuminate() {
     var selection = {
@@ -164,6 +168,7 @@ function illuminate() {
     $( "#presence_types" ).on( 'change', update_presence_types );
     $( "#interaction_types" ).on( 'change', update_interaction_types );
     $( "#control_form" ).on( 'submit', function ( e ) { e.preventDefault(); } )
+    $( "#script_select" ).on( 'change', function ( e ) { e.preventDefault(); } )
     $( window ).resize( function () {
 	sv_width = $( window ).width() - control_width - 60;
 	update_script_viz();

@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html;charset=utf-8"> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-  <script type="text/javascript" src="illuminator.js"></script>
+  <script type="text/javascript" src="/{{ current_id }}/illuminator.js"></script>
 
   <style>
     #control_panel {
@@ -39,6 +39,7 @@
     clear: right;
     }
     .title_bar {
+    clear=both;
     }
     .subtle {
     color: black;
@@ -56,7 +57,19 @@
 </head>
 <body>
   <div id="title" class="title_bar">
-    {{ title }}
+    {{ title }} 
+    <form id="script_select" class="checkform" action="/script" method="get">
+      <select name="script_id">
+      {% for script in scripts %}
+        {% if script.script_id == current_id %}
+      <option value="{{ script.script_id }}" selected>{{ script.title }}</option>
+        {% else %}
+      <option value="{{ script.script_id }}" >{{ script.title }}</option>
+        {% endif %}
+      {% endfor %}
+      </select>
+      <input type="submit" value="Load" />
+    </form>
   </div>
   <div id="graph_div">
     <p id="graph_title" class="small">Relationships for Scene (click a box to the right to select scene)</p3>
@@ -79,9 +92,11 @@
 	<label class="checkform">
 	  Locations:<input type="checkbox" checked="yes" name="location" value="LOCATION" />
 	</label>
+<!--
 	<label class="checkform">
 	  Things:<input  type="checkbox" checked="yes" name="thing" value="THING" />
 	</label>
+-->
       </fieldset>
       <fieldset id="presence_types">
 	<legend>

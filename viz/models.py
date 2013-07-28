@@ -27,4 +27,4 @@ class Script( models.Model ):
     interaction_sn = models.TextField( blank=True )
 
     def __unicode__( self ):
-        return self.title + " " + self.version
+        return self.title + " " + self.draft
