@@ -1,16 +1,6 @@
 "use strict";
 
 // Next up: 
-//
-//c. Character relationships over scenes.
-//
-//5) Put up sample website with one film.
-//   a. Create local website with Django
-//   b. Create data model for script
-//   c. Create JSON/AJEX fetch of data.
-//   d. Save JSON in database without pretty printing.
-//   e. Launch one film on Heroku.
-//
 //6) Put up drop down with all films we know.
 //   
 //7) Upload text
@@ -20,15 +10,6 @@
 //9) Parse FDX
 //
 //10) Upload FDX
-//
-//Future:
-//
-//a. FDX format import.
-//b. Upload script.
-//
-// Highlight scene numbers on mouse over?
-//
-// Consider use of range bands for height of bars.
 //
 // Examples of mouse over stuff: http://bl.ocks.org/Guerino1/2164562,http://bl.ocks.org/Guerino1/2141479
 
@@ -265,7 +246,19 @@ function illuminate() {
 	    .attr( 'font-size', '.5em' )
 	    .text( function ( d, i ) { return i+1; } )
 	    .attr( 'id', function ( d, i ) { return 'sv_col'+i; } )
-	    .attr( 'class', 'subtle' );
+	    .attr( 'class', 'subtle' )
+	    .on( 'mouseover', function ( d, i ) { 
+		d3.select( '#sv_col' + i ).attr( 'class', 'highlighted' ); 
+		d3.select( '#rel_col' + i ).attr( 'class', 'highlighted' ); 
+	    } )
+	    .on( 'mouseout', function ( d, i ) { 
+		d3.select( '#sv_col' + i ).attr( 'class', 'subtle' ); 
+		d3.select( '#rel_col' + i ).attr( 'class', 'subtle' ); 
+	    } )
+	    .on( 'click', function( d, i ) {
+		selection.current_scene = i+1; 
+		update_scene_graph(); 
+	    } );
 
 	column.attr( 'class', 'column' )
 	    .attr( 'transform', function ( d, i ) { return 'translate(' + x(d+i*x_padding) + ', 0)'; } );
@@ -398,7 +391,20 @@ function illuminate() {
 	    .attr( 'font-size', '.5em' )
 	    .text( function ( d, i ) { return i+1; } )
 	    .attr( 'id', function ( d, i ) { return 'rel_col'+i; } )
-	    .attr( 'class', 'subtle' );
+	    .attr( 'class', 'subtle' )
+	    .on( 'mouseover', function ( d, i ) { 
+		d3.select( '#sv_col' + i ).attr( 'class', 'highlighted' ); 
+		d3.select( '#rel_col' + i ).attr( 'class', 'highlighted' ); 
+	    } )
+	    .on( 'mouseout', function ( d, i ) { 
+		d3.select( '#sv_col' + i ).attr( 'class', 'subtle' ); 
+		d3.select( '#rel_col' + i ).attr( 'class', 'subtle' ); 
+	    } )
+	    .on( 'click', function( d, i ) {
+		selection.current_scene = i+1; 
+		update_scene_graph(); 
+	    } );
+
 
 	column.attr( 'class', 'rel_column' )
 	    .attr( 'transform', function ( d, i ) { return 'translate(' + x(d+i*x_padding) + ', 0)'; } );
