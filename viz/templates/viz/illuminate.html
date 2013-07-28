@@ -26,89 +26,107 @@
     }
     #graph_div {
     position: absolute;
-    top: 3px;
     float: left;
     clear: left;
     border: 1px solid;
+    font: 10px sans-serif;
     }
     .small {
-    font-size: 0.75em;
+    font: 12px sans-serif;
+    }
+    .checkform {
+    float: right;
+    clear: right;
+    }
+    .title_bar {
+    }
+    .subtle {
+    color: black;
+    font-size: .5em;
+    fill-opacity: .1;
+    }
+    .highlighted {
+    color: red;
+    font-size: .75em;
+    fill-opacity: 1;
     }
   </style>
 
 
 </head>
 <body>
+  <div id="title" class="title_bar">
+    {{ title }}
+  </div>
+  <div id="graph_div">
+    <p id="graph_title" class="small">Relationships for Scene (click a box to the right to select scene)</p3>
+  </div>
   <div id="script_div"></div>
   <div id="control_panel" class="small">
-    <p>Control Panel</p>
     <form id="control_form" autocomplete="off">
       <label>
-	View top: 
+	<button type="button">View top</button>
 	<input id="top_n" type="number" value="8" size="3"/>
 	nouns.
       </label>
       <fieldset id="noun_types">
 	<legend>
-	  Noun type:
+	  Show:
 	</legend>
-	<label>
-	  Character:<input  type="checkbox" checked="yes" name="character" value="CHARACTER" />
+	<label class="checkform">
+	  Characters:<input type="checkbox" checked="yes" name="character" value="CHARACTER" />
 	</label>
-	<br />
-	<label>
-	  Location:<input  type="checkbox" checked="yes" name="location" value="LOCATION" />
+	<label class="checkform">
+	  Locations:<input type="checkbox" checked="yes" name="location" value="LOCATION" />
 	</label>
-	<br />
-	<label>
-	  Thing:<input  type="checkbox" checked="yes" name="thing" value="THING" />
+	<label class="checkform">
+	  Things:<input  type="checkbox" checked="yes" name="thing" value="THING" />
 	</label>
       </fieldset>
       <fieldset id="presence_types">
 	<legend>
-	  Appearances:
+	  That appear in:
 	</legend>
-	<label>
-	  Action:<input  type="checkbox" checked="yes" name="appear" value="APPEAR" />
+	<label class="checkform">
+	  Action:<input type="checkbox" checked="yes" name="appear" value="APPEAR" />
 	</label>
 	<br />
-	<label>
-	  Dialog:<input  type="checkbox" checked="yes" name="discuss" value="DISCUSS" />
+	<label class="checkform">
+	  Dialog:<input type="checkbox" checked="yes" name="discuss" value="DISCUSS" />
 	</label>
 	<br />
-	<label>
-	  Mentioned in dialog:<input  type="checkbox" checked="yes" name="mention" value="MENTION" />
+	<label class="checkform">
+	  Mentioned in dialog:<input type="checkbox" checked="yes" name="mention" value="MENTION" />
 	</label>
 	<br />
-	<label>
-	  Setting:<input  type="checkbox" checked="yes" name="setting" value="SETTING" />
+	<label class="checkform">
+	  Setting:<input type="checkbox" checked="yes" name="setting" value="SETTING" />
 	</label>
       </fieldset>
       <fieldset id="interaction_types">
 	<legend>
-	  Interactions:
+	  Show relationships based on:
 	</legend>
-	<label>
-	  Act together:<input  type="checkbox" checked="yes" name="appear" value="APPEAR" />
+	<label class="checkform">
+	  Acting together:<input type="checkbox" checked="yes" name="appear" value="APPEAR" />
 	</label>
 	<br />
-	<label>
-	  Discuss:<input  type="checkbox" checked="yes" name="discuss" value="DISCUSS" />
+	<label class="checkform">
+	  Discussion:<input type="checkbox" checked="yes" name="discuss" value="DISCUSS" />
 	</label>
 	<br />
-	<label>
+	<label class="checkform">
 	  Mention(ed/s) in dialog:<input  type="checkbox" checked="yes" name="mention" value="MENTION" />
 	</label>
 	<br />
-	<label>
-	  Setting:<input  type="checkbox" checked="yes" name="setting" value="SETTING" />
+	<label class="checkform">
+	  Presence in a setting:<input type="checkbox" checked="yes" name="setting" value="SETTING" />
 	</label>
       </fieldset>
     </form>
   </div>
-  <div id="graph_div">
-    <p id="graph_title" class="small">Click on a colored box</p3>
+  <div id="relation_div">
+    <p id="relation_title" class="small">Relationships (click a box above to select a subject)</p>
   </div>
-  <div id="relation_div"><p id="relation_title" class="small">Relations</p></div>
 </body>
 </html>

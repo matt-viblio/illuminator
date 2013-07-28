@@ -4,7 +4,7 @@ from django.shortcuts import render
 from viz.models import Author, Script
 
 def home( request ):
-    return render( request, 'viz/illuminate.html' )
+    return render( request, 'viz/illuminate.html', { 'title': 'M.I.A.' } )
 
 def illuminator( request ):
     return render( request, 'viz/illuminator.js' )

@@ -129,7 +129,7 @@ function illuminate() {
     var x_padding = 2;
     var y_padding = 2;
 
-    var margin = { top: 0, right: 20, bottom: 30, left: 160 };
+    var margin = { top: 0, right: 30, bottom: 30, left: 160 };
     var sv_width  = $( window ).width() - control_width - 60;
     var sv_height = ( selection.top_n + 1 )*( box_height + y_padding );
     
@@ -231,7 +231,8 @@ function illuminate() {
 	    .attr( 'y', box_height/2 )
 	    .attr( 'dy', '.32em' )
 	    .attr( 'text-anchor', 'end' )
-	    .text( function ( d ) { return d.name.titleCase(); } );
+	    .text( function ( d ) { return d.name.titleCase(); } )
+	    .style( 'font', '10px sans-serif' );
 
 	row.transition().duration( duration )
 	    .attr( 'fill', function ( d, i ) { 
@@ -262,11 +263,12 @@ function illuminate() {
 	    .attr( 'y', box_height / 2 )
 	    .attr( 'text_anchor', 'middle' )
 	    .attr( 'font-size', '.5em' )
-	    .text( function ( d, i ) { return i+1; } );
+	    .text( function ( d, i ) { return i+1; } )
+	    .attr( 'id', function ( d, i ) { return 'sv_col'+i; } )
+	    .attr( 'class', 'subtle' );
 
 	column.attr( 'class', 'column' )
 	    .attr( 'transform', function ( d, i ) { return 'translate(' + x(d+i*x_padding) + ', 0)'; } );
-
 
 	function row_update( row ) {
 	    var cell = d3.select( this )
@@ -283,9 +285,15 @@ function illuminate() {
 			 update_scene_graph(); 
 			 refresh_relation_display_data( interaction_sn, scenes, script );
 			 update_relation_viz();
-		     } );
-// DEBUG in the future make scene numbers light up and put an automatic title bar on things.
-//		.on( 'mouseover', function ( d, i ) { console.log( row, cell ) } );
+		     } )
+		.on( 'mouseover', function ( d, i ) { 
+		    d3.select( '#sv_col' + i ).attr( 'class', 'highlighted' ); 
+		    d3.select( '#rel_col' + i ).attr( 'class', 'highlighted' ); 
+		} )
+		.on( 'mouseout', function ( d, i ) { 
+		    d3.select( '#sv_col' + i ).attr( 'class', 'subtle' ); 
+		    d3.select( '#rel_col' + i ).attr( 'class', 'subtle' ); 
+		} );
 
 	    cell.transition().duration( duration )
 		.attr( 'class', 'cell' )
@@ -355,7 +363,9 @@ function illuminate() {
 	    .attr( 'y', box_height/2 )
 	    .attr( 'dy', '.32em' )
 	    .attr( 'text-anchor', 'end' )
-	    .text( function ( d ) { return d.name.titleCase(); } );
+	    .text( function ( d ) { return d.name.titleCase(); } )
+	    .style( 'font', '10px sans-serif' );
+
 
 	row.transition().duration( duration )
 	    .attr( 'fill', function ( d, i ) { 
@@ -386,7 +396,9 @@ function illuminate() {
 	    .attr( 'y', box_height / 2 )
 	    .attr( 'text_anchor', 'middle' )
 	    .attr( 'font-size', '.5em' )
-	    .text( function ( d, i ) { return i+1; } );
+	    .text( function ( d, i ) { return i+1; } )
+	    .attr( 'id', function ( d, i ) { return 'rel_col'+i; } )
+	    .attr( 'class', 'subtle' );
 
 	column.attr( 'class', 'rel_column' )
 	    .attr( 'transform', function ( d, i ) { return 'translate(' + x(d+i*x_padding) + ', 0)'; } );
@@ -400,9 +412,15 @@ function illuminate() {
 	    cell.enter()
 		.append( 'rect' )
 		.style( 'fill-opacity', 0 )
-		.on( 'click', function ( d, i ) { selection.current_noun = row.name; selection.current_scene = i+1; update_scene_graph(); } );
-// DEBUG in the future make scene numbers light up and put an automatic title bar on things.
-//		.on( 'mouseover', function ( d, i ) { console.log( row, cell ) } );
+		.on( 'click', function ( d, i ) { selection.current_noun = row.name; selection.current_scene = i+1; update_scene_graph(); } )
+		.on( 'mouseover', function ( d, i ) { 
+		    d3.select( '#sv_col' + i ).attr( 'class', 'highlighted' ); 
+		    d3.select( '#rel_col' + i ).attr( 'class', 'highlighted' ); 
+		} )
+		.on( 'mouseout', function ( d, i ) { 
+		    d3.select( '#sv_col' + i ).attr( 'class', 'subtle' ); 
+		    d3.select( '#rel_col' + i ).attr( 'class', 'subtle' ); 
+		} );
 
 	    cell.transition().duration( duration )
 		.attr( 'class', 'rel_cell' )
