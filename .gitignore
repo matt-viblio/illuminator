@@ -4,7 +4,9 @@ venv
 
 staticfiles
 
-script
+scripts
+output
+*.dump*
 
 # C extensions
 *.so
