@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title>Script Upload</title>
+</head>
+<body>
+
+<h1>Upload Script</h1>
+
+<p>This upload accepts plain text script files for upload.  Create this file from Final Draft by saving as "Formatted Text"</p>
+
+<p>If your script was not created with Final Draft, it must adhere to
+this format:</p>
+<ul>
+<li>Scene headings must be capitalized and begin with EXT., EXTERIOR,
+INT., or INTERIOR</li>
+<li>Scene headings and action text must be left justified</li>
+<li>Dialog headings must be capitalized</li>
+<li>Dialog headings and dialog must be centered</li>
+</ul>
+
+<h2>Upload Script</h2>
+
+{% for error in errors %}
+<p>Error: {{ error }}</p>
+{% endfor %}
+
+<form action="/upload_script/" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<ul>
+{{ form.as_ul }}
+</ul>
+<input type="submit" value="Upload" />
+</form>
+
+<a href="/default/">Back to Visualizer</a>
+
+</body>
+</html>

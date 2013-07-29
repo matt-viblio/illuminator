@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html;charset=utf-8"> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-  <script type="text/javascript" src="/{{ current_id }}/illuminator.js"></script>
+  <script type="text/javascript" src="/illuminator/{{ current_id }}/illuminator.js"></script>
 
   <style>
     #control_panel {
@@ -58,18 +58,21 @@
 <body>
   <div id="title" class="title_bar">
     {{ title }} 
-    <form id="script_select" class="checkform" action="/script" method="get">
+    <form id="script_select" class="checkform" action="/load_script" method="get">
       <select name="script_id">
       {% for script in scripts %}
         {% if script.script_id == current_id %}
-      <option value="{{ script.script_id }}" selected>{{ script.title }}</option>
+      <option value="{{ script.script_id }}" selected>{{ script.title }} - {{ script.draft }}</option>
         {% else %}
-      <option value="{{ script.script_id }}" >{{ script.title }}</option>
+      <option value="{{ script.script_id }}" >{{ script.title }} - {{ script.draft }}</option>
         {% endif %}
       {% endfor %}
       </select>
       <input type="submit" value="Load" />
     </form>
+    <form style="float: right;" action="/upload_script/"><input type="submit" value="Upload New Script" /></form>
+
+</span>
   </div>
   <div id="graph_div">
     <p id="graph_title" class="small">Relationships for Scene (click a box to the right to select scene)</p3>

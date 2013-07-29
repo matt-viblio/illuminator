@@ -821,15 +821,17 @@ function illuminate() {
 		'noun_type': noun_types[name],
 		'presence': scene_ids.map( 
 		    function ( scene_id ) {
-			if ( presence_sn[scene_id][name] ) {
-			    var appear = presence_sn[scene_id][name].filter(
-				function ( p ) {
-				    return selection['presence_types'][p['presence_type']];
-				}
-			    ).length;
-			    return appear;
-			} else {
-			    return 0;
+			if ( presence_sn[scene_id] ) {
+			    if ( presence_sn[scene_id][name] ) {
+				var appear = presence_sn[scene_id][name].filter(
+				    function ( p ) {
+					return selection['presence_types'][p['presence_type']];
+				    }
+				).length;
+				return appear;
+			    } else {
+				return 0;
+			    }
 			}
 		    }
 		)

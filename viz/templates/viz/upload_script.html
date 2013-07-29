@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+
+</head>
+<body>
+<p>Processing Script</p>
+{% for key, value in fields.items %}
+Key: {{ key }}, Value: {{ value }}<br />
+{% endfor %}
+<pre>
+{{ script }}
+</pre>
+</body>
+</html>
