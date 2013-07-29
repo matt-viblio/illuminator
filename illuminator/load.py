@@ -55,9 +55,12 @@ def load_txt( body, lines_per_page=56 ):
 
 def calculate_whitespace( lines ):
     trim = Counter()
+    trim[0] = 1
     for line in lines:
         leading_spaces = re.match( r'( +)(EXT|INT)', line )
         if leading_spaces:
             trim[len( leading_spaces.group( 1 ) )] += 1
+
+    
 
     return max( trim, key=trim.get )
