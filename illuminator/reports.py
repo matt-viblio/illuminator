@@ -2,6 +2,7 @@ from illuminator.parse import CHARACTER, THING, LOCATION, SETTING, DISCUSS, MENT
 
 #import matplotlib.pyplot as plt
 import nltk.text
+nltk.data.path.append( '/app/illuminator/nltk_data' )
 from nltk.tokenize import word_tokenize
 import re
 import StringIO

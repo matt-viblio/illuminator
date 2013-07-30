@@ -46,4 +46,6 @@ def process_script( script, title, draft, parse_mode=STRICT ):
 
     s.save()
 
+    reset_parser_state()
+
     return s.id

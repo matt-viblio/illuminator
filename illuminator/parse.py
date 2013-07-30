@@ -18,7 +18,8 @@ script = {
                    }
           }
 '''
-
+import nltk
+nltk.data.path.append( '/app/illuminator/nltk_data' )
 from nltk.tokenize import word_tokenize, sent_tokenize, RegexpTokenizer
 import itertools
 import re

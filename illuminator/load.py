@@ -61,6 +61,4 @@ def calculate_whitespace( lines ):
         if leading_spaces:
             trim[len( leading_spaces.group( 1 ) )] += 1
 
-    
-
     return max( trim, key=trim.get )

@@ -5,7 +5,6 @@ from viz.models import Author, Script
 from viz.forms import UploadForm
 from illuminator.process_script import process_script
 
-
 def default( request ):
     '''Load the first script in the database by default.'''
     default = Script.objects.order_by('id')[0]
@@ -76,6 +75,9 @@ def upload_script( request ):
             title = form.cleaned_data['title']
             draft_number = form.cleaned_data['draft_number']
             script_file = request.FILES['script']
+
+            for filename, filex in request.FILES.iteritems():
+                print request.FILES[filename].name
 
             script_id = process_script( script_file, title, draft_number )
 
