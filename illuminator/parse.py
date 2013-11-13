@@ -70,6 +70,8 @@ def is_end_continue( line ):
     '''end_continue := ^\s*CONTINUED:\s*(\(\d+\))?\s*$'''
     if re.search( r'^\s*CONTINUED:\s*(\(\d+\))?\s*$', line ):
         return True
+    elif re.search( r'^\s*CONTINUED:\s*(\d+)?\s*$', line ):
+        return True
     else:
         return False
 
