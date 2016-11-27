@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from viz.models import Author, Script
 from viz.forms import UploadForm
-from illuminator.process_script import process_script
+#from illuminator.process_script import process_script
 
 def default( request ):
     '''Load the first script in the database by default.'''
@@ -65,6 +65,7 @@ def script_data( request, script_id, data_structure ):
 
     return HttpResponse( result, mimetype="application/json" )
 
+'''
 def upload_script( request ):
     if request.method == 'POST':
         form = UploadForm( request.POST, request.FILES )
@@ -95,4 +96,4 @@ def upload_script( request ):
         form = UploadForm()
 
     return render( request, 'viz/upload_form.html', { 'form' : form } )
-
+'''
