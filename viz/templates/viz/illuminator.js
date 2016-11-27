@@ -559,7 +559,7 @@ function illuminate() {
 	    } );
 
 	if ( new_links.length ) {
-	    new_links = Array.concat.apply( [], new_links );
+	    new_links = Array.prototype.concat.apply( [], new_links );
 	}
 	
 	update_links( links, new_links, nodes );
